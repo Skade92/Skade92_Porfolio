@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>skade92 | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0b0c10;
+    --surface: #111318;
+    --card: #161920;
+    --border: #1f2330;
+    --accent: #5b8cff;
+    --accent2: #a78bfa;
+    --gold: #f5c542;
+    --text: #e8eaf0;
+    --muted: #7a7f96;
+    --red: #ff5b7f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ---- NOISE OVERLAY ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(11,12,16,0.75);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(91,140,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .pfp-wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 6px rgba(91,140,255,0.12), 0 0 40px rgba(91,140,255,0.25);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .pfp-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .pfp-placeholder {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    user-select: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #e8eaf0 0%, #a0aaff 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 500px;
+    font-weight: 300;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.8rem;
+    animation: fadeDown 0.8s 0.4s ease both;
+  }
+
+  .tag {
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: var(--surface);
+    letter-spacing: 0.04em;
+  }
+
+  .hero-cta {
+    margin-top: 2.5rem;
+    animation: fadeDown 0.8s 0.5s ease both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover { background: #7aa3ff; transform: translateY(-2px); }
+
+  /* ---- SECTION BASE ---- */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* ---- ABOUT ---- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skill-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-item:hover { border-color: var(--accent); }
+
+  .skill-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .skill-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* ---- SUMMARY CARDS ---- */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.2rem;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .summary-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .summary-card .icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .summary-card .label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  /* ---- CONTENT CARDS ---- */
+  .content-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .content-block p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .content-block p:last-child { margin-bottom: 0; }
+
+  .content-block p strong { color: var(--text); font-weight: 500; }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat-pill {
+    padding: 0.4rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .stat-pill.blue { background: rgba(91,140,255,0.12); color: var(--accent); border: 1px solid rgba(91,140,255,0.25); }
+  .stat-pill.purple { background: rgba(167,139,250,0.12); color: var(--accent2); border: 1px solid rgba(167,139,250,0.25); }
+  .stat-pill.gold { background: rgba(245,197,66,0.1); color: var(--gold); border: 1px solid rgba(245,197,66,0.25); }
+  .stat-pill.red { background: rgba(255,91,127,0.1); color: var(--red); border: 1px solid rgba(255,91,127,0.25); }
+
+  /* ---- WORKS GRID ---- */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .work-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .work-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .work-thumb {
+    height: 180px;
+    background: var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+
+  .work-card:hover .work-thumb img {
+    transform: scale(1.05);
+  }
+
+  .work-info { padding: 1rem 1.2rem; }
+  .work-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .work-desc { font-size: 0.78rem; color: var(--muted); }
+
+  /* ---- CONTACT ---- */
+  .contact-block {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .social-link:hover { border-color: var(--accent); transform: translateX(5px); }
+
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .social-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .social-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .social-handle { font-size: 0.82rem; color: var(--muted); }
+  .social-arrow { margin-left: auto; color: var(--muted); font-size: 1.1rem; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.82rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---- HIGHLIGHT GRID ---- */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.8rem;
+  }
+
+  .highlight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.3rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .highlight-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .highlight-card .hc-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.7rem;
+    display: block;
+  }
+
+  .highlight-card .hc-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .highlight-card .hc-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ---- WIKI CARD IMAGE ---- */
+  .hc-img-wrap {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    background: var(--border);
+  }
+
+  .hc-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---- INLINE HYPERLINKS ---- */
+  .inline-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(91,140,255,0.35);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .inline-link:hover {
+    color: #a0aaff;
+    border-bottom-color: #a0aaff;
+  }
+
+  /* ---- GAMES CAROUSEL ---- */
+  .games-carousel-wrapper {
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .games-carousel-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .games-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-height: 130px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .games-carousel::-webkit-scrollbar { width: 4px; }
+  .games-carousel::-webkit-scrollbar-track { background: transparent; }
+  .games-carousel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .game-chip {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .game-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(91,140,255,0.08);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.75rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .works-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.2rem; }
+    .content-block { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">skade92</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#developing">Dev</a></li>
+    <li><a href="#beta">Testing</a></li>
+    <li><a href="#mod">Mod</a></li>
+    <li><a href="#middleman">MM</a></li>
+    <li><a href="#wiki">Wiki</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-glow"></div>
+
+  <div class="pfp-wrapper">
+    <img src="assets/profile.png" alt="Skade profile picture"/>
+  </div>
+
+  <p class="hero-eyebrow">Welcome to my portfolio</p>
+  <h1 class="hero-title">skade92</h1>
+  <p class="hero-sub">Developer · Beta Tester · Moderator · Trusted Middleman</p>
+
+  <div class="hero-tags">
+    <span class="tag">🇫🇷 French</span>
+    <span class="tag">🐍 Python 5+ yrs</span>
+    <span class="tag">🎮 Roblox Dev</span>
+    <span class="tag">🛡️ Habit Games Staff</span>
+    <span class="tag">🤝 Trusted MM</span>
+    <span class="tag">📊 Data & Business</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#about" class="btn-primary">Discover more ↓</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">About</p>
+  <h2 class="section-title reveal">Who Am I?</h2>
+
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        Hey! I'm <strong>Skade</strong>, an 18-year-old developer with a real passion for building things, whether that's in code, in games, or in the communities around them. I got into Roblox development more recently, but my <strong>5+ years of Python experience</strong> gave me a solid foundation that made picking up Lua feel natural.
+      </p>
+      <p>
+        I work in <strong>Data & Business</strong>, which means I'm comfortable navigating anything technical, from scripting and automation to thinking analytically about how systems fit together.
+      </p>
+      <p>
+        Beyond the technical side, I care a lot about <strong>how I work with people</strong>. I'm always responsive, honest, and I take every project seriously regardless of its size. Clear communication isn't an afterthought for me, it's part of the job.
+      </p>
+      <p>
+        I also served as a <strong>trusted middleman and beta tester</strong> for <a href="https://www.roblox.com/communities/12860813/Habit-Games#!/about" target="_blank" class="inline-link">Habit Games</a> (60K+ CCU), a role that's really shaped how I think about reliability, accountability, and delivering quality work. I've even contributed to fandom wikis, because I genuinely enjoy building useful things for communities.
+      </p>
+      <p style="color: var(--accent); font-style: italic; font-size: 0.9rem;">
+        Every project is a chance to learn something new, and I wouldn't have it any other way.
+      </p>
+    </div>
+
+    <div class="skills-list reveal">
+      <div class="skill-item">
+        <span class="skill-icon">🏗️</span>
+        <div>
+          <div class="skill-name">Building</div>
+          <div class="skill-desc">Low-poly & modern architecture. Versatile and adaptable to different styles with time.</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">⚙️</span>
+        <div>
+          <div class="skill-name">Scripting</div>
+          <div class="skill-desc">GUI development, interactive buttons, and functional game mechanics in Lua/Python.</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">📊</span>
+        <div>
+          <div class="skill-name">Data & Business</div>
+          <div class="skill-desc">Professional background that keeps me sharp with anything code or data related.</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🤝</span>
+        <div>
+          <div class="skill-name">Professionalism</div>
+          <div class="skill-desc">Clear communication, high standards, and total reliability, every single time.</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🌍</span>
+        <div>
+          <div class="skill-name">Languages</div>
+          <div class="skill-desc">Fluent in French (native) and English. Basic Spanish.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SUMMARY NAV -->
+<section style="padding: 3rem 2rem;">
+  <p class="section-label reveal">Navigation</p>
+  <h2 class="section-title reveal">What I Do</h2>
+  <div class="summary-grid">
+    <a class="summary-card reveal" href="#developing">
+      <div class="icon">💻</div>
+      <div class="label">Developing</div>
+    </a>
+    <a class="summary-card reveal" href="#beta">
+      <div class="icon">🧪</div>
+      <div class="label">Beta Testing</div>
+    </a>
+    <a class="summary-card reveal" href="#mod">
+      <div class="icon">🛡️</div>
+      <div class="label">Moderating</div>
+    </a>
+    <a class="summary-card reveal" href="#middleman">
+      <div class="icon">🤝</div>
+      <div class="label">Middleman</div>
+    </a>
+    <a class="summary-card reveal" href="#wiki">
+      <div class="icon">📚</div>
+      <div class="label">Wiki</div>
+    </a>
+    <a class="summary-card reveal" href="#contact">
+      <div class="icon">📬</div>
+      <div class="label">Contact Me</div>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DEVELOPING -->
+<section id="developing">
+  <p class="section-label reveal">01 · Developing</p>
+  <h2 class="section-title reveal">Building & Scripting</h2>
+
+  <div class="content-block reveal">
+    <p>
+      I'm relatively new to Roblox development, but don't let that fool you, I learn <strong>fast</strong>. Having spent <strong>5+ years with Python</strong> means I already think like a programmer: I understand logic, structure, data, and problem-solving. Picking up Lua has been a smooth transition because the fundamentals are already deeply ingrained.
+    </p>
+    <p>
+      My professional background in <strong>Data & Business</strong> has made me comfortable with everything code and data-related, from scripting automation to handling larger structured projects. I adapt quickly, ask the right questions, and get things done.
+    </p>
+    <p>
+      On the building side, I specialize in <strong>low-poly and modern-style architecture</strong>, though I'm open to adapting to different styles given the time. Whether it's a clean aesthetic build or a functional scripted system, I bring the same level of care and intention to every project.
+    </p>
+
+    <div class="stat-row">
+      <span class="stat-pill blue">Python 5+ years</span>
+      <span class="stat-pill purple">Lua / Roblox</span>
+      <span class="stat-pill gold">Data & Business</span>
+      <span class="stat-pill blue">Low-Poly Builds</span>
+      <span class="stat-pill purple">GUI Scripting</span>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Syne',sans-serif; font-size:1.1rem; margin-top:2.5rem; margin-bottom:0.5rem; color:var(--muted); font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:0.8rem;" class="reveal">PAST WORKS</h3>
+  <div class="works-grid reveal">
+    <div class="work-card">
+      <div class="work-thumb"><img src="assets/build4.png" alt="Modern House"/></div>
+      <div class="work-info">
+        <div class="work-name">Modern House</div>
+        <div class="work-desc">Clean contemporary architecture with flat roofing, glass facades, and a minimalist aesthetic.</div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb"><img src="assets/build3.png" alt="Car Concessionary"/></div>
+      <div class="work-info">
+        <div class="work-name">Car Concessionary</div>
+        <div class="work-desc">Commercial showroom build featuring large glass display windows and a bold modern structure.</div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb"><img src="assets/build2.png" alt="Classic House"/></div>
+      <div class="work-info">
+        <div class="work-name">Classic House</div>
+        <div class="work-desc">Traditional residential design with a warm red roof, covered porch, and timeless charm.</div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb"><img src="assets/build1.png" alt="Castle"/></div>
+      <div class="work-info">
+        <div class="work-name">Castle</div>
+        <div class="work-desc">Medieval fortress complete with towered walls, battlements, and a grand wooden drawbridge.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BETA TESTING -->
+<section id="beta">
+  <p class="section-label reveal">02 · Beta Testing</p>
+  <h2 class="section-title reveal">Quality Assurance</h2>
+
+  <div class="content-block reveal">
+    <p>
+      Beta testing is something I've been doing seriously for over <strong>3 years</strong>, and it's a role I genuinely enjoy. I'm an official beta tester for the <a href="https://www.roblox.com/communities/12860813/Habit-Games#!/about" target="_blank" class="inline-link"><strong>Habit Games</strong> group</a> (60K+ CCU), where I've contributed to <strong>50+ games</strong> throughout my time there. From hunting down obscure bugs to giving structured feedback on game feel, balancing, and player experience, I approach every test with a critical and constructive mindset.
+    </p>
+    <p>
+      I'm also active in the <a href="https://discord.gg/pR2f83Nd6Z" target="_blank" class="inline-link"><strong>QA Central server</strong></a>, which has further sharpened my ability to report issues clearly and communicate findings in a way that's actually useful to developers.
+    </p>
+    <p>
+      Having played Roblox since <strong>2018</strong> with countless hours across simulators, FPS games, tycoons, and adventure experiences means I bring real player instinct to my testing. I know what feels right, what feels off, and I can put it into words, covering both the positives and the things that need work.
+    </p>
+
+    <div class="stat-row">
+      <span class="stat-pill blue">3+ Years Testing</span>
+      <span class="stat-pill gold">50+ Games Tested</span>
+      <span class="stat-pill red">250M+ Visit Contributed</span>
+      <span class="stat-pill purple">Habit Games Official</span>
+      <span class="stat-pill blue">QA Central</span>
+    </div>
+  </div>
+
+  <div class="games-carousel-wrapper reveal">
+    <div class="games-carousel-label">Games Tested</div>
+    <div class="games-carousel">
+      <a class="game-chip" href="https://www.roblox.com/games/138064211947107/Unbox-Your-Car" target="_blank">Unbox Your Car</a>
+      <a class="game-chip" href="https://www.roblox.com/games/17818017124/Eat-Everything-Simulator" target="_blank">Eat Everything Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/82338394608938/My-Boba-Store" target="_blank">My Boba Store</a>
+      <a class="game-chip" href="https://www.roblox.com/games/131372854229024/Level-Your-Weapon" target="_blank">Level Your Weapon</a>
+      <a class="game-chip" href="https://www.roblox.com/games/136723874788185/My-Boba-Stand" target="_blank">My Boba Stand</a>
+      <a class="game-chip" href="https://www.roblox.com/games/108264999407756/Gym-Training" target="_blank">Gym Training</a>
+      <a class="game-chip" href="https://www.roblox.com/games/76250497213806/Unbox-a-Boba-Stand" target="_blank">Unbox a Boba Stand</a>
+      <a class="game-chip" href="https://www.roblox.com/games/74176548556660/Hacker-Showdown-Simulator" target="_blank">Hacker Showdown Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/82293894595394/Fat-Training" target="_blank">Fat Training</a>
+      <a class="game-chip" href="https://www.roblox.com/games/86269990981198/Tank-RNG" target="_blank">Tank RNG</a>
+      <a class="game-chip" href="https://www.roblox.com/games/123571290918498/Unbox-a-Brainrot-Shop" target="_blank">Unbox a Brainrot Shop</a>
+      <a class="game-chip" href="https://www.roblox.com/games/135707546762730/Unbox-Your-Tank" target="_blank">Unbox Your Tank</a>
+      <a class="game-chip" href="https://www.roblox.com/games/124942503684833/Brainrot-Training-X" target="_blank">Brainrot Training X</a>
+      <a class="game-chip" href="https://www.roblox.com/games/84512763896655/My-Tank-Farm" target="_blank">My Tank Farm</a>
+      <a class="game-chip" href="https://www.roblox.com/games/119583587549416/Gym-Training-X" target="_blank">Gym Training X</a>
+      <a class="game-chip" href="https://www.roblox.com/games/84714424509861/My-Factory" target="_blank">My Factory</a>
+      <a class="game-chip" href="https://www.roblox.com/games/103485016129849/Boba-Stand-Unboxing" target="_blank">Boba Stand Unboxing</a>
+      <a class="game-chip" href="https://www.roblox.com/games/124172644763532/Fish-a-Anime" target="_blank">Fish a Anime</a>
+      <a class="game-chip" href="https://www.roblox.com/games/138493013273833/Fat-Showdown-Simulator" target="_blank">Fat Showdown Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/93988914186794/Brainrot-Training" target="_blank">Brainrot Training</a>
+      <a class="game-chip" href="https://www.roblox.com/games/110140945302716/Brainrot-Simulator" target="_blank">Brainrot Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/95635663201910/Brainrot-Fishing" target="_blank">Brainrot Fishing</a>
+      <a class="game-chip" href="https://www.roblox.com/games/101578669319913/Punch-Brainrots" target="_blank">Punch Brainrots</a>
+      <a class="game-chip" href="https://www.roblox.com/games/136004659625626/Eat-a-Brainrot" target="_blank">Eat a Brainrot</a>
+      <a class="game-chip" href="https://www.roblox.com/games/102015201029580/Unbox-a-Tank" target="_blank">Unbox a Tank</a>
+      <a class="game-chip" href="https://www.roblox.com/games/14236123211/Punch-Simulator" target="_blank">Punch Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/18130504174/Fat-Race" target="_blank">Fat Race</a>
+      <a class="game-chip" href="https://www.roblox.com/games/101237818732976/Gym-Showdown-Simulator" target="_blank">Gym Showdown Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/18767261433/Gym-Race-Simulator" target="_blank">Gym Race Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/85163385731998/Princess-Palace-Tycoon" target="_blank">Princess Palace Tycoon</a>
+      <a class="game-chip" href="https://www.roblox.com/games/91986852011820/Tank-Training" target="_blank">Tank Training</a>
+      <a class="game-chip" href="https://www.roblox.com/games/17327880884/Eat-Everyone-Simulator" target="_blank">Eat Everyone Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/15445888182/Pet-Training-Simulator" target="_blank">Pet Training Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/15234998219/Farmer-Simulator" target="_blank">Farmer Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/18889420065/Big-Fish-Simulator" target="_blank">Big Fish Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/16722784102/Catch-a-Fish-Simulator" target="_blank">Catch a Fish Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/18544840205/Tank-Racer" target="_blank">Tank Racer</a>
+      <a class="game-chip" href="https://www.roblox.com/games/8851519587/FAT-Simulator" target="_blank">FAT Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/138161219313147/Unbox-a-Factory" target="_blank">Unbox a Factory</a>
+      <a class="game-chip" href="https://www.roblox.com/games/120855726347432/Snow-Movers" target="_blank">Snow Mover Simulator</a>
+      <a class="game-chip" href="https://www.roblox.com/games/114710767911422/Climb-The-Brainrot-Base" target="_blank">Climb the Brainrot Base</a>
+      <a class="game-chip" href="https://www.roblox.com/games/128684318683332/Launch-Anything-Dev" target="_blank">Launch Anything</a>
+      <a class="game-chip" href="https://roblox.com/games/111996161342573/Merge-Plants-vs-Zombies" target="_blank">Merge Plants Vs Zombies</a>
+      <a class="game-chip" href="https://www.roblox.com/games/121217335069513/Monkey-Soccer" target="_blank">Monkey Soccer</a>
+      <a class="game-chip" href="https://www.roblox.com/games/103620165045362/Merge-Luckyblocks" target="_blank">Merge Luckyblocks</a>
+      <a class="game-chip" href="https://www.roblox.com/games/136316557349494/Soccer-Duels" target="_blank">Soccer Duels</a>
+      <a class="game-chip" href="https://www.roblox.com/games/135057009844111/Veloria" target="_blank">Veloria</a>
+      <a class="game-chip" href="https://www.roblox.com/games/95413092530244/Biggest-Word-WINS" target="_blank">Biggest Word Wins</a>
+      <a class="game-chip" href="https://www.roblox.com/games/82404745457132/Murder-Game-3" target="_blank">Murder Game 3</a>
+      <a class="game-chip" href="https://www.roblox.com/games/125700405216363/Camo-Or-Snipe" target="_blank">Camo Or Snipe!</a>
+      <a class="game-chip" href="https://www.roblox.com/games/106656026556805/Run-a-Black-Market" target="_blank">Run A Black Market</a>
+      <a class="game-chip" href="https://www.roblox.com/games/92566878532403/Get-hit-by-a-TRUCK" target="_blank">Get hit by a TRUCK</a>
+      <a class="game-chip" href="https://roblox.com/games/128187097895795/Alien-Invasion" target="_blank">Alien Invasion</a>
+      <a class="game-chip" href="https://www.roblox.com/games/113768144993878/Dumpling-Drop" target="_blank">Dumpling Drop</a>
+      <a class="game-chip" href="https://www.roblox.com/games/76764205789199/Catch-and-Craft" target="_blank">Catch and Craft!</a>
+      <a class="game-chip" href="https://www.roblox.com/games/133540524607328/Fill-the-Truck" target="_blank">Fill the Truck</a>
+      <a class="game-chip" href="https://roblox.com/games/80659322962641/Dino-Dig" target="_blank">Dino Dig</a>
+      <a class="game-chip" href="https://www.roblox.com/games/113074596291053/Fight-for-Brainrots" target="_blank">Fight For Brainrot</a>
+      <a class="game-chip" href="https://www.roblox.com/games/110100139915012/LA-Rideout-Beta" target="_blank">LA Rideout</a>
+      <a class="game-chip" href="https://www.roblox.com/games/94415725482909/Fruit-Basket" target="_blank">Fruit Basket</a>
+      <a class="game-chip" href="https://www.roblox.com/games/83836697526815/Catalog-Fashion-Show" target="_blank">Catalog Fashion Show</a>
+      <a class="game-chip" href="https://www.roblox.com/games/86684021693551/Plane-Empire" target="_blank">Plane Empire</a>
+      <a class="game-chip" href="https://www.roblox.com/games/91603307704803/KOD" target="_blank">KO'D</a>    </div>
+  </div>
+
+  <div class="highlight-grid reveal">
+    <div class="highlight-card">
+      <span class="hc-icon">🐛</span>
+      <div class="hc-title">Bug Hunting</div>
+      <div class="hc-desc">Tracking down edge cases, reproducing issues reliably, and reporting them with enough context for developers to act fast.</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">⚖️</span>
+      <div class="hc-title">Game Balance</div>
+      <div class="hc-desc">Evaluating feel, pacing, and progression from a real player's perspective, not just what's broken, but what's off.</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">📋</span>
+      <div class="hc-title">Structured Feedback</div>
+      <div class="hc-desc">Writing organized, developer-ready reports that are detailed enough to be useful and clear enough to be acted on.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MODERATING -->
+<section id="mod">
+  <p class="section-label reveal">03 · Moderating</p>
+  <h2 class="section-title reveal">Community Management</h2>
+
+  <div class="content-block reveal">
+    <p>
+      I've been part of the <a href="https://www.roblox.com/communities/12860813/Habit-Games#!/about" target="_blank" class="inline-link"><strong>Habit Games</strong> staff team</a> for over 3 years, helping moderate a Discord community of <strong>60,000+ members</strong>. It's a role I take seriously, and the track record speaks for itself, I've consistently shown up, stayed active, and handled situations with fairness and calm.
+    </p>
+    <p>
+      On the technical side, I'm comfortable with server setup from scratch: <strong>embeds, auto-moderation bots, role configuration, logging systems</strong>, the full stack of what makes a well-run server. I can spin one up efficiently without needing much hand-holding.
+    </p>
+    <p>
+      What really drives my approach to moderation is that I only commit to communities I genuinely care about, both the <strong>game itself and the people in it</strong>. When you actually enjoy what the community is built around, it shows in the quality of your moderation. People can tell the difference between someone just doing a job and someone who actually gives a damn.
+    </p>
+
+    <div class="stat-row">
+      <span class="stat-pill blue">3+ Years Staff</span>
+      <span class="stat-pill gold">60K+ Member Server</span>
+      <span class="stat-pill purple">Habit Games</span>
+      <span class="stat-pill blue">Bot & Embed Setup</span>
+      <span class="stat-pill red">Auto-Mod Systems</span>
+    </div>
+  </div>
+
+  <div class="highlight-grid reveal">
+    <div class="highlight-card">
+      <span class="hc-icon">⚙️</span>
+      <div class="hc-title">Server Setup</div>
+      <div class="hc-desc">Building Discord servers from scratch: embeds, role hierarchies, logging channels, and custom bots, fully configured.</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">🛡️</span>
+      <div class="hc-title">Community Moderation</div>
+      <div class="hc-desc">Handling conflicts, enforcing rules, and keeping culture healthy, on a 60K+ member server for 3+ years.</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">🤖</span>
+      <div class="hc-title">Auto-Mod Systems</div>
+      <div class="hc-desc">Configuring automated moderation for 24/7 coverage, spam filters, raid protection, and action logging.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MIDDLEMAN -->
+<section id="middleman">
+  <p class="section-label reveal">04 · Middleman</p>
+  <h2 class="section-title reveal">Trusted Transactions</h2>
+
+  <div class="content-block reveal">
+    <p>
+      I've been operating as a trusted middleman for <strong>3+ years</strong>, and trust is something I've earned, not assumed. I got my start as an <strong>official trusted middleman for Punch Simulator</strong> (500M+ visits), where I handled a high volume of tickets to facilitate safe gamepass and pet trades between players. It was a role that taught me the importance of precision, neutrality, and speed.
+    </p>
+    <p>
+      Since then, my middleman work has expanded beyond <a href="https://www.roblox.com/games/14236123211/Punch-Simulator" target="_blank" class="inline-link">Punch Simulator</a> to other games including <a href="https://www.roblox.com/games/15234998219/Farmer-Simulator" target="_blank" class="inline-link">Farmer Simulator</a>, <a href="https://www.roblox.com/games/138064211947107/Unbox-Your-Car" target="_blank" class="inline-link">Unbox Your Car</a>, <a href="https://www.roblox.com/games/138161219313147/Unbox-a-Factory" target="_blank" class="inline-link">Unbox a Factory</a>, and more. No matter the context, my approach stays the same: clear process, no shortcuts, and the transaction doesn't move until both parties are protected.
+    </p>
+    <p>
+      I've accumulated <strong>numerous vouches</strong> across trust-critical games like <a href="https://www.roblox.com/games/4872321990/Islands" target="_blank" class="inline-link"><strong>Island</strong></a> and <a href="https://www.roblox.com/games/1537690962/Bee-Swarm-Simulator" target="_blank" class="inline-link"><strong>Bee Swarm Simulator</strong></a>, communities where your reputation is everything and a single bad act can define you permanently. Mine has stayed clean throughout, and that's something I'm genuinely proud of.
+    </p>
+
+    <div class="stat-row">
+      <span class="stat-pill gold">3+ Years MM</span>
+      <span class="stat-pill blue">Punch Simulator Official</span>
+      <span class="stat-pill purple">500M+ Visits Game</span>
+      <span class="stat-pill blue">Island Vouches</span>
+      <span class="stat-pill red">Bee Swarm Vouches</span>
+    </div>
+  </div>
+
+  <div class="highlight-grid reveal">
+    <div class="highlight-card">
+      <span class="hc-icon">🔒</span>
+      <div class="hc-title">Safe Trades</div>
+      <div class="hc-desc">No transaction moves until both parties are fully protected. Clear process, every time, no exceptions.</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">⚖️</span>
+      <div class="hc-title">Neutral & Transparent</div>
+      <div class="hc-desc">No bias, no shortcuts, just a clean, documented process that protects both sides of the deal equally.</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">✅</span>
+      <div class="hc-title">Verified Vouches</div>
+      <div class="hc-desc">Proven track record across Island, Bee Swarm Simulator, and Punch Simulator, earned, not assumed.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WIKI -->
+<section id="wiki">
+  <p class="section-label reveal">05 · Wiki</p>
+  <h2 class="section-title reveal">Fandom Wikis</h2>
+
+  <div class="content-block reveal">
+    <p>
+      I genuinely enjoy building useful resources for gaming communities, and wikis are one of the best ways to do that. When I love a game, I want others to have access to good, accurate, well-organized information, so I make it myself.
+    </p>
+    <p>
+      I have my own <a href="https://community.fandom.com/wiki/User:Skade92" target="_blank" class="inline-link"><strong>Fandom profile</strong></a>, and I've created and contributed to several wikis over the years, including some that are actively used by large communities to this day.
+    </p>
+  </div>
+
+  <div class="highlight-grid reveal" style="margin-top:1.8rem;">
+    <a class="highlight-card" href="https://official-habit-games.fandom.com/wiki/Official_Habit_Games_Wiki" target="_blank" style="text-decoration:none;">
+      <div class="hc-img-wrap"><img src="assets/habit-games-logo.jpeg" alt="Habit Games"/></div>
+      <div class="hc-title">Habit Games Wiki</div>
+      <div class="hc-desc">Created the official wiki for the Habit Games Group, covering their games, updates, and community resources.</div>
+    </a>
+    <a class="highlight-card" href="https://anime-immortals.fandom.com/wiki/Anime_Immortals_Wiki" target="_blank" style="text-decoration:none;">
+      <div class="hc-img-wrap"><img src="assets/anime-immortals-banner.webp" alt="Anime Immortals"/></div>
+      <div class="hc-title">Anime Immortals Wiki</div>
+      <div class="hc-desc">Created the wiki for Anime Immortals, one of Habit Games' flagship titles, documenting its mechanics and content.</div>
+    </a>
+    <a class="highlight-card" href="https://anime-apex.fandom.com/wiki/Anime_Apex_Wiki" target="_blank" style="text-decoration:none;">
+      <div class="hc-img-wrap"><img src="assets/anime-apex-logo.webp" alt="Anime Apex"/></div>
+      <div class="hc-title">Anime Apex Wiki</div>
+      <div class="hc-desc">Built the dedicated wiki for Anime Apex Games, providing players with structured guides and game information.</div>
+    </a>
+    <a class="highlight-card" href="https://counter-blox.fandom.com/wiki/Home" target="_blank" style="text-decoration:none;">
+      <div class="hc-img-wrap"><img src="assets/counter-blox-banner.webp" alt="Counter Blox"/></div>
+      <div class="hc-title">Counter Blox Wiki</div>
+      <div class="hc-desc">Contributed extensively to the Counter Blox wiki, which is still actively used and updated by a large community of players.</div>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">06 · Contact</p>
+  <h2 class="section-title reveal">Let's Connect</h2>
+  <p class="reveal" style="color:var(--muted); font-size:0.97rem; font-weight:300; margin-bottom:0.5rem;">
+    Feel free to reach out through any of my socials below. Whether you have a project in mind, want to talk, or just want to connect, my DMs are open.
+  </p>
+
+  <div class="contact-block">
+    <a class="social-link reveal" href="https://discord.com/users/skade92" target="_blank">
+      <span class="social-icon">
+        <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#5865F2" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+        </svg>
+      </span>
+      <div>
+        <div class="social-name">Discord</div>
+        <div class="social-handle">skade92</div>
+      </div>
+      <span class="social-arrow">→</span>
+    </a>
+
+    <a class="social-link reveal" href="https://www.roblox.com/users/885975114/profile" target="_blank">
+      <span class="social-icon">
+        <img src="assets/roblox-logo.png" alt="Roblox" style="width:32px;height:32px;object-fit:contain;border-radius:6px;"/>
+      </span>
+      <div>
+        <div class="social-name">Roblox</div>
+        <div class="social-handle">skade92</div>
+      </div>
+      <span class="social-arrow">→</span>
+    </a>
+
+    <a class="social-link reveal" href="https://www.youtube.com/@skade9268" target="_blank">
+      <span class="social-icon">
+        <img src="assets/youtube-logo.png" alt="YouTube" style="width:32px;height:32px;object-fit:contain;"/>
+      </span>
+      <div>
+        <div class="social-name">YouTube</div>
+        <div class="social-handle">@skade9268</div>
+      </div>
+      <span class="social-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Crafted by <span>skade92</span> · 2025
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger summary cards
+  document.querySelectorAll('.summary-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.07}s`;
+  });
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
+    });
+  });
+</script>
+</body>
+</html>
